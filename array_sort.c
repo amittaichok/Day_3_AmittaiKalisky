@@ -7,27 +7,27 @@
 #include <stdlib.h>
 #define SIZE 10
 void print_pointers(int * pointers [SIZE]);
-void swap(int *p1, int*p2);
+void swap(int **p1, int**p2);
 void sort(int * pointers [SIZE]);
 
 /**/
 void sort(int * pointers [SIZE]){
     int *min; /*the pointer who points to the lowest number*/ 
     for(int i = 0; i < SIZE; i++){
+
+        printf("%d\n", i);/*debug*/
         min = pointers[i];
         for(int j = i; j < SIZE; j++){
             if (*pointers[j] < *min){
                 min = pointers[j];
             }
         }
-        swap_places(min, pointers[i]);
+        printf("%d %d\n", *min, *pointers[i]);/*debug*/
+        swap(&min, &pointers[i]);
+        printf("%d %d\n", *min, *pointers[i]);/*debug*/
     }
 }
 
-
-void swap_places(int * pointers[SIZE], int *p1, int *p2){
-    int
-}
 /*------------------------------------------------------
 * Function Name - swap
 *
@@ -39,10 +39,10 @@ void swap_places(int * pointers[SIZE], int *p1, int *p2){
 *
 * Author - Amittai Kalisky
 -------------------------------------------------------*/
-void swap(int *p1, int *p2){
-    int helper = *p1;
+void swap(int **p1, int **p2){
+    int * helper = *p1;
     *p1 = *p2;
-    *p2 = *p1;
+    *p2 = helper;
 }
 
 /*------------------------------------------------------
@@ -75,6 +75,23 @@ void print_pointers(int * pointers [SIZE]){
 * Author - Amittai Kalisky
 -------------------------------------------------------*/
 int main() {
+    int x = 2;
+    int y = 40;
+    int *a = &x;
+    int *b = &y;
+    int * list[2] = {a, b};
+    for(int i = 0; i < 2; i++){
+        printf("pointer %d points to number %d and holds the value of %x.\n", i, *list[i], list[i]);
+    }
+    swap(&a, &b);
+    for(int i = 0; i < 2; i++){
+        printf("pointer %d points to number %d and holds the value of %x.\n", i, *list[i], list[i]);
+    }
+    swap(&list[0], &list[1]);
+    for(int i = 0; i < 2; i++){
+        printf("pointer %d points to number %d and holds the value of %x.\n", i, *list[i], list[i]);
+    } 
+
     int numbers [SIZE];
     int * pointers [SIZE];
 
@@ -94,8 +111,7 @@ int main() {
 
     print_pointers(pointers);
 
-
-
+    sort(pointers);
 
     print_pointers(pointers);
 
