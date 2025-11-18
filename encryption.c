@@ -20,7 +20,7 @@ char * decrypt(int encryption[MESSAGE_SIZE]);
 * Author - Amittai Kalisky
 -------------------------------------------------------*/
 char * decrypt(int encryption[MESSAGE_SIZE]){
-    int * helper [MESSAGE_SIZE];
+    int helper[MESSAGE_SIZE];
     char * decryption = malloc(MESSAGE_SIZE * sizeof(char));
 
     printf("debug 1\n"); /*debug*/
@@ -52,7 +52,6 @@ char * decrypt(int encryption[MESSAGE_SIZE]){
     for(int i = 0; i < MESSAGE_SIZE; i++){
         encryption[i] = helper[(i+5) % MESSAGE_SIZE];
     }
-    helper = encryption;
     printf("debug 5\n"); /*debug*/
 
     /*step 4*/
